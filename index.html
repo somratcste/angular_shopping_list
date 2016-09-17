@@ -13,7 +13,7 @@
 		<div class="panel panel-primary">
 		  <div class="panel-heading"><center>My Shopping List</center></div>
 		  <div class="panel-body" ng-repeat="x in products">
-		  	{{x}}<span class="pull-right" ng-click="removeItem($index)">x</span>
+		  	{{x}}<span class="pull-right" ng-click="removeItem($index)" style="cursor:pointer">x</span>
 		  </div>
 		  <div class="panel-footer">
 		  	<div class="input-group">  
@@ -42,6 +42,11 @@
 			} else {
 				$scope.errortext = "The item is already in your Shopping list.";
 			}
+		}
+
+		$scope.removeItem = function(x){
+			$scope.errortext = "";
+			$scope.products.splice(x,1);
 		}
 	});
 </script>
