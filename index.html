@@ -9,21 +9,32 @@
 </head>
 <body>
 <div class="container">
-	<div class="col-md-6">
+	<div class="col-md-6" ng-app="myShoppingList" ng-cloak ng-controller="myCtrl">
 		<div class="panel panel-primary">
 		  <div class="panel-heading"><center>My Shopping List</center></div>
-		  <div class="panel-body">Milk<span class="pull-right">x</span></div>
+		  <div class="panel-body" ng-repeat="x in products">
+		  	{{x}}<span class="pull-right" ng-click="removeItem($index)">x</span>
+		  </div>
 		  <div class="panel-footer">
 		  	<div class="input-group">  
-		      <input type="text" class="form-control" placeholder="Add Shopping Item here">
+		      <input type="text" class="form-control" placeholder="Add Shopping Item here" ng-model="addMe">
 		      <span class="input-group-btn">
-		        <button class="btn btn-success" type="button">Add</button>
+		        <button class="btn btn-success" type="button" ng-click="addItem()">Add</button>
 		      </span>
 		    </div><!-- /input-group -->
+		    <p class="red">{{errortext}}</p>
 		  </div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	var app = angular.module("myShoppingList",[]);
+	app.controller("myCtrl" , function($scope) {
+		$scope.products = ["Milk","Bread","Cheese"];
+
+	});
+</script>
 	
 </body>
 </html>
